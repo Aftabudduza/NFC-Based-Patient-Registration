@@ -1,0 +1,12 @@
+F:\Source\NFC\src\eTagService\bin\Debug\SqlServerTypes\x64\msvcr100.dll
+F:\Source\NFC\src\eTagService\bin\Debug\SqlServerTypes\x64\SqlServerSpatial110.dll
+F:\Source\NFC\src\eTagService\bin\Debug\SqlServerTypes\x86\msvcr100.dll
+F:\Source\NFC\src\eTagService\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
+F:\Source\NFC\src\eTagService\bin\Debug\TagService.dll.config
+F:\Source\NFC\src\eTagService\bin\Debug\TagService.dll
+F:\Source\NFC\src\eTagService\bin\Debug\TagService.pdb
+F:\Source\NFC\src\eTagService\obj\Debug\service.csproj.CoreCompileInputs.cache
+F:\Source\NFC\src\eTagService\obj\Debug\service.csproj.CopyComplete
+F:\Source\NFC\src\eTagService\obj\Debug\TagService.dll
+F:\Source\NFC\src\eTagService\obj\Debug\TagService.pdb
+F:\Source\NFC\src\eTagService\obj\Debug\service.csproj.AssemblyReference.cache

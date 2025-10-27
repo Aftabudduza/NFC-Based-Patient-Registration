@@ -1,0 +1,805 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NFCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="UserDefinedId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="CompanyId" Type="int" />
+          <Property Name="CreatedBy" Type="smallint" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="smallint" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ContactInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="150" />
+          <Property Name="Region" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="30" />
+          <Property Name="State" Type="varchar" MaxLength="20" />
+          <Property Name="City" Type="varchar" MaxLength="30" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" />
+          <Property Name="Phone" Type="varchar" MaxLength="30" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="30" />
+          <Property Name="WorkPhoneExt" Type="varchar" MaxLength="30" />
+          <Property Name="Fax" Type="varchar" MaxLength="30" />
+          <Property Name="Website" Type="varchar" MaxLength="100" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+          <Property Name="ProfileLogo" Type="varchar" MaxLength="300" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" />
+          <Property Name="IsOverwrite" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="UserTypeContact" Type="varchar" MaxLength="30" />
+          <Property Name="Other" Type="varchar" MaxLength="300" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="30" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="30" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="RefPhone" Type="varchar" MaxLength="30" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="TypeOfContact" Type="varchar" MaxLength="300" />
+          <Property Name="Memo" Type="varchar" MaxLength="250" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+          <Property Name="Longitude" Type="varchar" MaxLength="30" />
+          <Property Name="Latitude" Type="varchar" MaxLength="30" />
+          <Property Name="IsEmailFlow" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iso" Type="char" MaxLength="2" />
+          <Property Name="name" Type="nvarchar" MaxLength="80" />
+          <Property Name="nicename" Type="nvarchar" MaxLength="80" />
+          <Property Name="iso3" Type="char" MaxLength="3" />
+          <Property Name="numcode" Type="smallint" />
+          <Property Name="phonecode" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NFC.dbo.GlobalID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GlobalID">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="CurrentID" />
+          </Key>
+          <Property Name="ObjectID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IDForYear" Type="int" />
+          <Property Name="IDForMonth" Type="int" />
+          <Property Name="IDForDate" Type="datetime" />
+          <Property Name="CurrentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserDefinedId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="20" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedBy" Type="smallint" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="smallint" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="STATE" />
+          </Key>
+          <Property Name="STATE" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="STATENAME" Type="varchar" MaxLength="50" />
+          <Property Name="SalesTaxRate" Type="numeric" Precision="6" Scale="3" />
+          <Property Name="FreightTaxable" Type="char" MaxLength="1" />
+          <Property Name="ShippingSurcharge" Type="numeric" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="UserLog_Data">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionId" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="LoginDate" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="LastUpdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" />
+          <Property Name="Serial" Type="varchar" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneVerifyCode" Type="varchar" MaxLength="30" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="ProfileLogo" Type="varchar" MaxLength="300" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" />
+          <Property Name="CompanyLogo" Type="varchar" MaxLength="300" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="30" />
+          <Property Name="WorkPhoneExt" Type="varchar" MaxLength="30" />
+          <Property Name="Fax" Type="varchar" MaxLength="30" />
+          <Property Name="IsPhoneVerified" Type="bit" />
+          <Property Name="IsNewUser" Type="bit" />
+          <Property Name="IsAgree" Type="bit" />
+          <Property Name="DoNotEmbedProfile" Type="bit" />
+          <Property Name="DoNotEmbedCompany" Type="bit" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="150" />
+          <Property Name="Region" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="20" />
+          <Property Name="City" Type="varchar" MaxLength="30" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" />
+          <Property Name="Other" Type="varchar" MaxLength="300" />
+          <Property Name="DatabaseName" Type="varchar" MaxLength="50" />
+          <Property Name="DatabaseLocation" Type="varchar" MaxLength="200" />
+          <Property Name="UserTypeContact" Type="varchar" MaxLength="20" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CanLogin" Type="bit" />
+          <Property Name="IsUserProfileComplete" Type="bit" />
+          <Property Name="IsBillingComplete" Type="bit" />
+          <Property Name="IsOverwrite" Type="bit" />
+          <Property Name="Website" Type="varchar" MaxLength="100" />
+          <Property Name="Category" Type="varchar" MaxLength="30" />
+          <Property Name="YTD_Contact_Export_Limit" Type="varchar" MaxLength="10" />
+          <Property Name="YTD_Contact_Export" Type="varchar" MaxLength="10" />
+          <Property Name="MTD_Contact_Import" Type="varchar" MaxLength="10" />
+          <Property Name="MTD_Contact_Import_Limit" Type="varchar" MaxLength="10" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="20" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="RefPhone" Type="varchar" MaxLength="30" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="TypeOfContact" Type="varchar" MaxLength="30" />
+          <Property Name="SubscriptionType" Type="varchar" MaxLength="20" />
+          <Property Name="SubscriptionExpiredOn" Type="datetime" />
+          <Property Name="StorageExpiredOn" Type="datetime" />
+          <Property Name="IsStorageSubscription" Type="bit" />
+          <Property Name="LastImportedDate" Type="datetime" />
+          <Property Name="LastExportedDate" Type="datetime" />
+          <Property Name="Contact_Storage_Limit" Type="varchar" MaxLength="10" />
+          <Property Name="IsSentMail" Type="bit" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+          <Property Name="Longitude" Type="varchar" MaxLength="30" />
+          <Property Name="Latitude" Type="varchar" MaxLength="30" />
+          <Property Name="IsEmailFlow" Type="bit" />
+          <Property Name="EmailFlowCreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" />
+          <Property Name="UserDefineId" Type="int" />
+        </EntityType>
+        <EntityType Name="Version">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="andVerCode" Type="varchar" MaxLength="20" />
+          <Property Name="andVerLabel" Type="varchar" MaxLength="20" />
+          <Property Name="andMustUpdate" Type="bit" />
+          <Property Name="andVerNote" Type="varchar(max)" />
+          <Property Name="andLink" Type="varchar" MaxLength="255" />
+          <Property Name="iOsVerCode" Type="varchar" MaxLength="20" />
+          <Property Name="iOsVerLabel" Type="varchar" MaxLength="20" />
+          <Property Name="iOsMustUpdate" Type="bit" />
+          <Property Name="iOsLink" Type="varchar" MaxLength="255" />
+          <Property Name="iOsVerNote" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_dbo_Child_dbo_Master_MasterId">
+          <End Role="Master" Type="Self.Master" Multiplicity="1" />
+          <End Role="Child" Type="Self.Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Master">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_GetID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObjectID" Type="varchar" Mode="In" />
+          <Parameter Name="ItemID" Type="varchar" Mode="In" />
+          <Parameter Name="IDForYear" Type="int" Mode="In" />
+          <Parameter Name="IDForMonth" Type="int" Mode="In" />
+          <Parameter Name="IDForDate" Type="datetime" Mode="In" />
+          <Parameter Name="NewID" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="usp_getPhoneNoByAutoComplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="autocompleteText" Type="varchar" Mode="In" />
+          <Parameter Name="GroupCodeFor" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_UpdateUserProfileEmailAndPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Password" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="MobileNo" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="NFCModelStoreContainer">
+          <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactInformation" EntityType="Self.ContactInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Master" EntityType="Self.Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLog_Data" EntityType="Self.UserLog_Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Version" EntityType="Self.Version" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GlobalID" EntityType="Self.GlobalID" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GlobalID].[ObjectID] AS [ObjectID], 
+    [GlobalID].[ItemID] AS [ItemID], 
+    [GlobalID].[IDForYear] AS [IDForYear], 
+    [GlobalID].[IDForMonth] AS [IDForMonth], 
+    [GlobalID].[IDForDate] AS [IDForDate], 
+    [GlobalID].[CurrentID] AS [CurrentID]
+    FROM [dbo].[GlobalID] AS [GlobalID]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_Child_dbo_Master_MasterId" Association="Self.FK_dbo_Child_dbo_Master_MasterId">
+            <End Role="Master" EntitySet="Master" />
+            <End Role="Child" EntitySet="Child" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NFCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="UserDefinedId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int16" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int16" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="OwnerId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Master" Relationship="Self.FK_dbo_Child_dbo_Master_MasterId" FromRole="Child" ToRole="Master" />
+        </EntityType>
+        <EntityType Name="ContactInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WorkPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WorkPhoneExt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileLogo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsOverwrite" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="UserTypeContact" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Other" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="RefPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfContact" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Memo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IsEmailFlow" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iso" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="nicename" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="iso3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="numcode" Type="Int16" />
+          <Property Name="phonecode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserDefinedId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int16" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int16" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Child" Relationship="Self.FK_dbo_Child_dbo_Master_MasterId" FromRole="Master" ToRole="Child" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="STATE" />
+          </Key>
+          <Property Name="STATE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SalesTaxRate" Type="Decimal" Precision="6" Scale="3" />
+          <Property Name="FreightTaxable" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ShippingSurcharge" Type="Decimal" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="UserLog_Data">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="LoginDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Serial" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneVerifyCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileLogo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyLogo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="WorkPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WorkPhoneExt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IsPhoneVerified" Type="Boolean" />
+          <Property Name="IsNewUser" Type="Boolean" />
+          <Property Name="IsAgree" Type="Boolean" />
+          <Property Name="DoNotEmbedProfile" Type="Boolean" />
+          <Property Name="DoNotEmbedCompany" Type="Boolean" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Other" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="DatabaseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DatabaseLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UserTypeContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CanLogin" Type="Boolean" />
+          <Property Name="IsUserProfileComplete" Type="Boolean" />
+          <Property Name="IsBillingComplete" Type="Boolean" />
+          <Property Name="IsOverwrite" Type="Boolean" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YTD_Contact_Export_Limit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="YTD_Contact_Export" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTD_Contact_Import" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MTD_Contact_Import_Limit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="RefPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfContact" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SubscriptionExpiredOn" Type="DateTime" Precision="3" />
+          <Property Name="StorageExpiredOn" Type="DateTime" Precision="3" />
+          <Property Name="IsStorageSubscription" Type="Boolean" />
+          <Property Name="LastImportedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastExportedDate" Type="DateTime" Precision="3" />
+          <Property Name="Contact_Storage_Limit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsSentMail" Type="Boolean" />
+          <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IsEmailFlow" Type="Boolean" />
+          <Property Name="EmailFlowCreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserDefineId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GlobalID">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="CurrentID" />
+          </Key>
+          <Property Name="ObjectID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDForYear" Type="Int32" />
+          <Property Name="IDForMonth" Type="Int32" />
+          <Property Name="IDForDate" Type="DateTime" Precision="3" />
+          <Property Name="CurrentID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Child_dbo_Master_MasterId">
+          <End Role="Master" Type="Self.Master" Multiplicity="1" />
+          <End Role="Child" Type="Self.Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Master">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TagEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Child" EntityType="Self.Child" />
+          <EntitySet Name="ContactInformation" EntityType="Self.ContactInformation" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Master" EntityType="Self.Master" />
+          <EntitySet Name="States" EntityType="Self.States" />
+          <EntitySet Name="UserLog_Data" EntityType="Self.UserLog_Data" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" />
+          <EntitySet Name="GlobalID" EntityType="Self.GlobalID" />
+          <AssociationSet Name="FK_dbo_Child_dbo_Master_MasterId" Association="Self.FK_dbo_Child_dbo_Master_MasterId">
+            <End Role="Master" EntitySet="Master" />
+            <End Role="Child" EntitySet="Child" />
+          </AssociationSet>
+          <FunctionImport Name="SP_GetID">
+            <Parameter Name="ObjectID" Mode="In" Type="String" />
+            <Parameter Name="ItemID" Mode="In" Type="String" />
+            <Parameter Name="IDForYear" Mode="In" Type="Int32" />
+            <Parameter Name="IDForMonth" Mode="In" Type="Int32" />
+            <Parameter Name="IDForDate" Mode="In" Type="DateTime" />
+            <Parameter Name="NewID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_getPhoneNoByAutoComplete" ReturnType="Collection(NFCModel.usp_getPhoneNoByAutoComplete_Result)">
+            <Parameter Name="autocompleteText" Mode="In" Type="String" />
+            <Parameter Name="GroupCodeFor" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_UpdateUserProfileEmailAndPassword">
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="MobileNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Version" EntityType="NFCModel.Version" />
+        </EntityContainer>
+        <ComplexType Name="usp_getPhoneNoByAutoComplete_Result">
+          <Property Type="String" Name="label" Nullable="false" MaxLength="134" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Version">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="andVerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="andVerLabel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="andMustUpdate" Type="Boolean" />
+          <Property Name="andVerNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="andLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="iOsVerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="iOsVerLabel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="iOsMustUpdate" Type="Boolean" />
+          <Property Name="iOsLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="iOsVerNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NFCModelStoreContainer" CdmEntityContainer="TagEntities">
+          <EntitySetMapping Name="Child">
+            <EntityTypeMapping TypeName="NFCModel.Child">
+              <MappingFragment StoreEntitySet="Child">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="UserDefinedId" ColumnName="UserDefinedId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactInformation">
+            <EntityTypeMapping TypeName="NFCModel.ContactInformation">
+              <MappingFragment StoreEntitySet="ContactInformation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="WorkPhoneExt" ColumnName="WorkPhoneExt" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ProfileLogo" ColumnName="ProfileLogo" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="IsOverwrite" ColumnName="IsOverwrite" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserTypeContact" ColumnName="UserTypeContact" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="RefPhone" ColumnName="RefPhone" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TypeOfContact" ColumnName="TypeOfContact" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="IsEmailFlow" ColumnName="IsEmailFlow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="NFCModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="iso" ColumnName="iso" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="nicename" ColumnName="nicename" />
+                <ScalarProperty Name="iso3" ColumnName="iso3" />
+                <ScalarProperty Name="numcode" ColumnName="numcode" />
+                <ScalarProperty Name="phonecode" ColumnName="phonecode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Master">
+            <EntityTypeMapping TypeName="NFCModel.Master">
+              <MappingFragment StoreEntitySet="Master">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserDefinedId" ColumnName="UserDefinedId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="NFCModel.States">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="STATENAME" ColumnName="STATENAME" />
+                <ScalarProperty Name="SalesTaxRate" ColumnName="SalesTaxRate" />
+                <ScalarProperty Name="FreightTaxable" ColumnName="FreightTaxable" />
+                <ScalarProperty Name="ShippingSurcharge" ColumnName="ShippingSurcharge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLog_Data">
+            <EntityTypeMapping TypeName="NFCModel.UserLog_Data">
+              <MappingFragment StoreEntitySet="UserLog_Data">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfile">
+            <EntityTypeMapping TypeName="NFCModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PhoneVerifyCode" ColumnName="PhoneVerifyCode" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ProfileLogo" ColumnName="ProfileLogo" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="WorkPhoneExt" ColumnName="WorkPhoneExt" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="IsPhoneVerified" ColumnName="IsPhoneVerified" />
+                <ScalarProperty Name="IsNewUser" ColumnName="IsNewUser" />
+                <ScalarProperty Name="IsAgree" ColumnName="IsAgree" />
+                <ScalarProperty Name="DoNotEmbedProfile" ColumnName="DoNotEmbedProfile" />
+                <ScalarProperty Name="DoNotEmbedCompany" ColumnName="DoNotEmbedCompany" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="DatabaseName" ColumnName="DatabaseName" />
+                <ScalarProperty Name="DatabaseLocation" ColumnName="DatabaseLocation" />
+                <ScalarProperty Name="UserTypeContact" ColumnName="UserTypeContact" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CanLogin" ColumnName="CanLogin" />
+                <ScalarProperty Name="IsUserProfileComplete" ColumnName="IsUserProfileComplete" />
+                <ScalarProperty Name="IsBillingComplete" ColumnName="IsBillingComplete" />
+                <ScalarProperty Name="IsOverwrite" ColumnName="IsOverwrite" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="YTD_Contact_Export_Limit" ColumnName="YTD_Contact_Export_Limit" />
+                <ScalarProperty Name="YTD_Contact_Export" ColumnName="YTD_Contact_Export" />
+                <ScalarProperty Name="MTD_Contact_Import" ColumnName="MTD_Contact_Import" />
+                <ScalarProperty Name="MTD_Contact_Import_Limit" ColumnName="MTD_Contact_Import_Limit" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="RefPhone" ColumnName="RefPhone" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TypeOfContact" ColumnName="TypeOfContact" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="SubscriptionExpiredOn" ColumnName="SubscriptionExpiredOn" />
+                <ScalarProperty Name="StorageExpiredOn" ColumnName="StorageExpiredOn" />
+                <ScalarProperty Name="IsStorageSubscription" ColumnName="IsStorageSubscription" />
+                <ScalarProperty Name="LastImportedDate" ColumnName="LastImportedDate" />
+                <ScalarProperty Name="LastExportedDate" ColumnName="LastExportedDate" />
+                <ScalarProperty Name="Contact_Storage_Limit" ColumnName="Contact_Storage_Limit" />
+                <ScalarProperty Name="IsSentMail" ColumnName="IsSentMail" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="IsEmailFlow" ColumnName="IsEmailFlow" />
+                <ScalarProperty Name="EmailFlowCreatedOn" ColumnName="EmailFlowCreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserType">
+            <EntityTypeMapping TypeName="NFCModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserType1" ColumnName="UserType" />
+                <ScalarProperty Name="UserDefineId" ColumnName="UserDefineId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GlobalID">
+            <EntityTypeMapping TypeName="NFCModel.GlobalID">
+              <MappingFragment StoreEntitySet="GlobalID">
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="IDForYear" ColumnName="IDForYear" />
+                <ScalarProperty Name="IDForMonth" ColumnName="IDForMonth" />
+                <ScalarProperty Name="IDForDate" ColumnName="IDForDate" />
+                <ScalarProperty Name="CurrentID" ColumnName="CurrentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetID" FunctionName="NFCModel.Store.SP_GetID" />
+          <FunctionImportMapping FunctionImportName="usp_getPhoneNoByAutoComplete" FunctionName="NFCModel.Store.usp_getPhoneNoByAutoComplete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NFCModel.usp_getPhoneNoByAutoComplete_Result">
+                <ScalarProperty Name="label" ColumnName="label" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_UpdateUserProfileEmailAndPassword" FunctionName="NFCModel.Store.usp_UpdateUserProfileEmailAndPassword" />
+          <EntitySetMapping Name="Version">
+            <EntityTypeMapping TypeName="NFCModel.Version">
+              <MappingFragment StoreEntitySet="Version">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="iOsVerNote" ColumnName="iOsVerNote" />
+                <ScalarProperty Name="iOsLink" ColumnName="iOsLink" />
+                <ScalarProperty Name="iOsMustUpdate" ColumnName="iOsMustUpdate" />
+                <ScalarProperty Name="iOsVerLabel" ColumnName="iOsVerLabel" />
+                <ScalarProperty Name="iOsVerCode" ColumnName="iOsVerCode" />
+                <ScalarProperty Name="andLink" ColumnName="andLink" />
+                <ScalarProperty Name="andVerNote" ColumnName="andVerNote" />
+                <ScalarProperty Name="andMustUpdate" ColumnName="andMustUpdate" />
+                <ScalarProperty Name="andVerLabel" ColumnName="andVerLabel" />
+                <ScalarProperty Name="andVerCode" ColumnName="andVerCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

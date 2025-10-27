@@ -1,0 +1,17 @@
+F:\Source\NFC\src\eTagService\bin\Release\SqlServerTypes\x64\msvcr100.dll
+F:\Source\NFC\src\eTagService\bin\Release\SqlServerTypes\x64\SqlServerSpatial110.dll
+F:\Source\NFC\src\eTagService\bin\Release\SqlServerTypes\x86\msvcr100.dll
+F:\Source\NFC\src\eTagService\bin\Release\SqlServerTypes\x86\SqlServerSpatial110.dll
+F:\Source\NFC\src\eTagService\bin\Release\TagService.dll.config
+F:\Source\NFC\src\eTagService\bin\Release\TagService.dll
+F:\Source\NFC\src\eTagService\bin\Release\TagService.pdb
+F:\Source\NFC\src\eTagService\bin\Release\AuthorizeNet.dll
+F:\Source\NFC\src\eTagService\bin\Release\EntityFramework.dll
+F:\Source\NFC\src\eTagService\bin\Release\EntityFramework.SqlServer.dll
+F:\Source\NFC\src\eTagService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\Source\NFC\src\eTagService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+F:\Source\NFC\src\eTagService\obj\Release\service.csprojAssemblyReference.cache
+F:\Source\NFC\src\eTagService\obj\Release\service.csproj.CoreCompileInputs.cache
+F:\Source\NFC\src\eTagService\obj\Release\service.csproj.CopyComplete
+F:\Source\NFC\src\eTagService\obj\Release\TagService.dll
+F:\Source\NFC\src\eTagService\obj\Release\TagService.pdb

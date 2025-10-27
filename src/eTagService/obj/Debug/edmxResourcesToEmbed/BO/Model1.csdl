@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NFCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Child">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="UserDefinedId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int16" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int16" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="OwnerId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Master" Relationship="Self.FK_dbo_Child_dbo_Master_MasterId" FromRole="Child" ToRole="Master" />
+  </EntityType>
+  <EntityType Name="ContactInformation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhoneExt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProfileLogo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsOverwrite" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="UserTypeContact" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Other" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="RefPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TypeOfContact" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Memo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="IsEmailFlow" Type="Int16" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iso" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="nicename" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="iso3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="numcode" Type="Int16" />
+    <Property Name="phonecode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Master">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserDefinedId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int16" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int16" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Child" Relationship="Self.FK_dbo_Child_dbo_Master_MasterId" FromRole="Master" ToRole="Child" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="STATE" />
+    </Key>
+    <Property Name="STATE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="STATENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SalesTaxRate" Type="Decimal" Precision="6" Scale="3" />
+    <Property Name="FreightTaxable" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ShippingSurcharge" Type="Decimal" Precision="6" Scale="2" />
+  </EntityType>
+  <EntityType Name="UserLog_Data">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SessionId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="LoginDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Serial" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneVerifyCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProfileLogo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyLogo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhoneExt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="IsPhoneVerified" Type="Boolean" />
+    <Property Name="IsNewUser" Type="Boolean" />
+    <Property Name="IsAgree" Type="Boolean" />
+    <Property Name="DoNotEmbedProfile" Type="Boolean" />
+    <Property Name="DoNotEmbedCompany" Type="Boolean" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Other" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="DatabaseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DatabaseLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="UserTypeContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CanLogin" Type="Boolean" />
+    <Property Name="IsUserProfileComplete" Type="Boolean" />
+    <Property Name="IsBillingComplete" Type="Boolean" />
+    <Property Name="IsOverwrite" Type="Boolean" />
+    <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="YTD_Contact_Export_Limit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="YTD_Contact_Export" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MTD_Contact_Import" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MTD_Contact_Import_Limit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="RefPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TypeOfContact" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="SubscriptionType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SubscriptionExpiredOn" Type="DateTime" Precision="3" />
+    <Property Name="StorageExpiredOn" Type="DateTime" Precision="3" />
+    <Property Name="IsStorageSubscription" Type="Boolean" />
+    <Property Name="LastImportedDate" Type="DateTime" Precision="3" />
+    <Property Name="LastExportedDate" Type="DateTime" Precision="3" />
+    <Property Name="Contact_Storage_Limit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IsSentMail" Type="Boolean" />
+    <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="IsEmailFlow" Type="Boolean" />
+    <Property Name="EmailFlowCreatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserDefineId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="GlobalID">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="CurrentID" />
+    </Key>
+    <Property Name="ObjectID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ItemID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDForYear" Type="Int32" />
+    <Property Name="IDForMonth" Type="Int32" />
+    <Property Name="IDForDate" Type="DateTime" Precision="3" />
+    <Property Name="CurrentID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_Child_dbo_Master_MasterId">
+    <End Role="Master" Type="Self.Master" Multiplicity="1" />
+    <End Role="Child" Type="Self.Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Master">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TagEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Child" EntityType="Self.Child" />
+    <EntitySet Name="ContactInformation" EntityType="Self.ContactInformation" />
+    <EntitySet Name="Country" EntityType="Self.Country" />
+    <EntitySet Name="Master" EntityType="Self.Master" />
+    <EntitySet Name="States" EntityType="Self.States" />
+    <EntitySet Name="UserLog_Data" EntityType="Self.UserLog_Data" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" />
+    <EntitySet Name="GlobalID" EntityType="Self.GlobalID" />
+    <AssociationSet Name="FK_dbo_Child_dbo_Master_MasterId" Association="Self.FK_dbo_Child_dbo_Master_MasterId">
+      <End Role="Master" EntitySet="Master" />
+      <End Role="Child" EntitySet="Child" />
+    </AssociationSet>
+    <FunctionImport Name="SP_GetID">
+      <Parameter Name="ObjectID" Mode="In" Type="String" />
+      <Parameter Name="ItemID" Mode="In" Type="String" />
+      <Parameter Name="IDForYear" Mode="In" Type="Int32" />
+      <Parameter Name="IDForMonth" Mode="In" Type="Int32" />
+      <Parameter Name="IDForDate" Mode="In" Type="DateTime" />
+      <Parameter Name="NewID" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_getPhoneNoByAutoComplete" ReturnType="Collection(NFCModel.usp_getPhoneNoByAutoComplete_Result)">
+      <Parameter Name="autocompleteText" Mode="In" Type="String" />
+      <Parameter Name="GroupCodeFor" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UpdateUserProfileEmailAndPassword">
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="MobileNo" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Version" EntityType="NFCModel.Version" />
+  </EntityContainer>
+  <ComplexType Name="usp_getPhoneNoByAutoComplete_Result">
+    <Property Type="String" Name="label" Nullable="false" MaxLength="134" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Version">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="andVerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="andVerLabel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="andMustUpdate" Type="Boolean" />
+    <Property Name="andVerNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="andLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="iOsVerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iOsVerLabel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iOsMustUpdate" Type="Boolean" />
+    <Property Name="iOsLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="iOsVerNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>
